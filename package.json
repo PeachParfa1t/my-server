@@ -12,6 +12,8 @@
     "description": "",
     "devDependencies": {
         "nodemon": "^3.1.10"
+    },
+    "dependencies": {
+        "mysql2": "^3.14.1"
     }
-
 }
