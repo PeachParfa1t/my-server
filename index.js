@@ -188,8 +188,15 @@ Group.belongsTo(User, { foreignKey: "created_by" })
 User.hasMany(GroupRequest, { foreignKey: "requested_by" })
 GroupRequest.belongsTo(User, { foreignKey: "requested_by" })
 
+// Ассоциации many-to-many через UserGroup
 User.belongsToMany(Group, { through: UserGroup, foreignKey: "user_id" })
 Group.belongsToMany(User, { through: UserGroup, foreignKey: "group_id" })
+
+// ВАЖНО: Добавляем прямые ассоциации для UserGroup
+UserGroup.belongsTo(User, { foreignKey: "user_id" })
+UserGroup.belongsTo(Group, { foreignKey: "group_id" })
+User.hasMany(UserGroup, { foreignKey: "user_id" })
+Group.hasMany(UserGroup, { foreignKey: "group_id" })
 
 Group.hasMany(Subject, { foreignKey: "group_id" })
 Subject.belongsTo(Group, { foreignKey: "group_id" })
@@ -208,6 +215,12 @@ Task.belongsTo(User, { foreignKey: "created_by" })
 
 User.belongsToMany(Task, { through: UserTask, foreignKey: "user_id" })
 Task.belongsToMany(User, { through: UserTask, foreignKey: "task_id" })
+
+// Прямые ассоциации для UserTask
+UserTask.belongsTo(User, { foreignKey: "user_id" })
+UserTask.belongsTo(Task, { foreignKey: "task_id" })
+User.hasMany(UserTask, { foreignKey: "user_id" })
+Task.hasMany(UserTask, { foreignKey: "task_id" })
 
 module.exports = {
   sequelize,

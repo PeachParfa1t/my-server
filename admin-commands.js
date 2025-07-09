@@ -1,6 +1,6 @@
 // Дополнительные команды для администраторов
-const { User, Group, UserGroup } = require("./models")
-const bot = require("./bot") // Declare the bot variable
+const { User, Group, UserGroup } = require("./index")
+const bot = require("./bot")
 
 // Команда для назначения ролей (только для админов)
 bot.onText(/\/setrole (\d+) (admin|user)/, async (msg, match) => {
